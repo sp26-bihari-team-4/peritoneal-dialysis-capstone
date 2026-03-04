@@ -18,7 +18,7 @@ public:
 	 * @param hal The Hardware Abstraction Layer (HAL).
 	 * @param pin The pin number.
 	 */
-	PWMOutput(IHAL hal, int pin);
+	PWMOutput(IHAL &hal, int pin);
 
 	/**
 	 * Sets the duty cycle for pulse-width modulated output on this pin.
@@ -29,7 +29,7 @@ public:
 	void analogWrite(float dutyCycle);
 
 private:
-	IHAL m_hal;
+	IHAL &m_hal;
 	int m_pin;
 };
 
