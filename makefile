@@ -1,4 +1,4 @@
-run_tests:
+run-tests:
 	pio test -e native
 
 lint:
