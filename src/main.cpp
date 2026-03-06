@@ -1,8 +1,10 @@
 #if defined(ARDUINO_AVR_UNO)
 
-#include "Arduino.h"
+#include <Arduino.h>
 
-void setup() {}
+void setup() {
+	short test = (int)3;
+}
 
 void loop() {}
 
