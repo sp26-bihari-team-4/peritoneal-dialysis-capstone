@@ -5,4 +5,9 @@ TabWidth: 2
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortBlocksOnASingleLine: Empty
 ContinuationIndentWidth: 2
+IncludeBlocks: Merge
+KeepEmptyLines:
+  AtEndOfFile: false
+  AtStartOfBlock: false
+  AtStartOfFile: false
 ...
