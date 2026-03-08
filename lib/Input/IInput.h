@@ -10,6 +10,14 @@
 
 class IInput {
 public:
+	virtual ~IInput() = default;
+
+	/**
+	 * Samples this input.
+	 *
+	 * @return The floating-point value of this input, normalized to the range
+	 *         [0, 1].
+	 */
 	virtual float getValue() = 0;
 };
 
