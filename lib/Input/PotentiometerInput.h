@@ -15,6 +15,12 @@
 
 class PotentiometerInput : public IInput {
 public:
+	/**
+	 * Configueres a pin as a potentiometer input.
+	 *
+	 * @param hal The Hardware Abstraction Layer (HAL).
+	 * @param pin The pin number.
+	 */
 	PotentiometerInput(IHAL &hal, int pin);
 
 	float getValue() override;
