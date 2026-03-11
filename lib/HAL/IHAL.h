@@ -1,9 +1,13 @@
+/**
+ * @file IHAL.h
+ */
+
 #ifndef IHAL_H
 #define IHAL_H
 
 /**
  * Hardware Abstraction Layer Interface
- * 
+ *
  * This interface defines all hardware operations needed by the application.
  * Different platforms (Arduino, Raspberry Pi, etc.) implement this interface
  * to provide platform-specific functionality.
