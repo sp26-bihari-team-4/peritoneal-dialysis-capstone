@@ -1,3 +1,7 @@
+/**
+ * @file ISerialDisplay.h
+ */
+
 #ifndef SERIAL_DISPLAY_H
 #define SERIAL_DISPLAY_H
 
