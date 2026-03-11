@@ -1,7 +1,5 @@
 #include <PotentiometerInput.h>
 
-#include <assert.h>
-
 // TODO: should be defined by IHAL method, e.g., a member function
 //       maxInputQuant()
 #define MAX_QUANT 1023
