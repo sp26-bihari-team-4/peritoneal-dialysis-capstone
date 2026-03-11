@@ -1,3 +1,7 @@
+/**
+ * @file PotentiometerInput.h
+ */
+
 #ifndef POTENTIOMETER_INPUT_H
 #define POTENTIOMETER_INPUT_H
 

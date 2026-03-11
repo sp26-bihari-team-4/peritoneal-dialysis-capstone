@@ -1,3 +1,7 @@
+/**
+ * @file ArduinoHAL.h
+ */
+
 #ifndef ARDUINO_HAL_H
 #define ARDUINO_HAL_H
 

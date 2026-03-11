@@ -1,3 +1,7 @@
+/**
+ * @file IHAL.h
+ */
+
 #ifndef IHAL_H
 #define IHAL_H
 

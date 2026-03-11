@@ -1,3 +1,7 @@
+/**
+ * @file IInput.h
+ */
+
 #ifndef IINPUT_H
 #define IINPUT_H
 

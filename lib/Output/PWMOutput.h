@@ -1,3 +1,7 @@
+/**
+ * @file PWMOutput.h
+ */
+
 #ifndef PWM_OUTPUT_H
 #define PWM_OUTPUT_H
 
