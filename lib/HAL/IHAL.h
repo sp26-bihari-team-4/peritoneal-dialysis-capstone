@@ -83,7 +83,14 @@ public:
 	 */
 	virtual void digitalWrite(int pin, DigitalValue value) = 0;
 
-	// Serial print functions
+	// Serial
+
+	/**
+	 * Initializes the serial interface.
+	 *
+	 * This method must be called before using the serial print functions.
+	 */
+	virtual void beginSerial() = 0;
 
 	/**
 	 * Transmits an ASCII string over serial.

@@ -4,20 +4,9 @@
 
 #include <assert.h>
 
-static constexpr int SERIAL_BAUD = 9600;
-
-static constexpr AnalogValue MAX_ANALOG_READ_QUANT = 1023;
-static constexpr AnalogValue MAX_ANALOG_WRITE_QUANT = 255;
+ArduinoHAL::ArduinoHAL(int serialBaud) : m_serialBaud{serialBaud} {}
 
 // Analog I/O
-
-static void setupSerial() {
-	Serial.begin(SERIAL_BAUD);
-}
-
-ArduinoHAL::ArduinoHAL() {
-	setupSerial();
-}
 
 AnalogValue ArduinoHAL::analogRead(int pin) {
 	return analogRead(pin);
@@ -47,7 +36,11 @@ void ArduinoHAL::digitalWrite(int pin, DigitalValue value) {
 	digitalWrite(pin, value);
 }
 
-// Serial print functions
+// Serial
+
+void ArduinoHAL::beginSerial() {
+	Serial.begin(m_serialBaud);
+}
 
 void ArduinoHAL::print(const char *s) {
 	Serial.print(s);

@@ -12,7 +12,7 @@
 
 class ArduinoHAL : public IHAL {
 public:
-	ArduinoHAL();
+	ArduinoHAL(int serialBaud);
 
 	AnalogValue analogRead(int pin) override;
 	void analogWrite(int pin, AnalogValue value) override;
@@ -22,11 +22,18 @@ public:
 	DigitalValue digitalRead(int pin) override;
 	void digitalWrite(int pin, DigitalValue value) override;
 
+	void beginSerial() override;
 	void print(const char *s) override;
 	void println(const char *s) override;
 
 	void delayMs(unsigned long durationMs) override;
 	unsigned long getTimeMs() override;
+
+private:
+	static constexpr AnalogValue MAX_ANALOG_READ_QUANT = 1023;
+	static constexpr AnalogValue MAX_ANALOG_WRITE_QUANT = 255;
+
+	int m_serialBaud;
 };
 
 #endif // ARDUINO_HAL_H
