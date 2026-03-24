@@ -1,5 +1,4 @@
 #include <CatheterController.h>
-#include <SerialDisplay.h>
 #include <PotentiometerInput.h>
 #include <PWMOutput.h>
 
@@ -8,14 +7,18 @@
  */
 
 
-CatheterController::CatheterController(IHAL &hal)
-    : input1(hal, 14),
-      output1(hal, 9),
-      input2(hal, 15),
-      output2(hal, 10),
+CatheterController::CatheterController(IHAL &hal, int inputPin1, int outputPin1, int inputPin2, int outputPin2)
+    : input1(hal, inputPin1),
+      output1(hal, outputPin1),
+      input2(hal, inputPin2),
+      output2(hal, outputPin2),
       channel1(input1, output1),
       channel2(input2, output2),
       display(hal) {}
+
+void CatheterController::initialize() {
+    display.initialize();
+}
 
 
 void CatheterController::update() {
