@@ -1,11 +1,12 @@
 /**
- * @file ISerialDisplay.h
+ * @file SerialDisplay.h
  */
 
 #ifndef SERIAL_DISPLAY_H
 #define SERIAL_DISPLAY_H
 
 #include <IDisplay.h>
+#include <IHAL.h>
 
 /**
  * Serial display
@@ -14,11 +15,15 @@
  * serial output.
  */
 class SerialDisplay : public IDisplay {
+private:
+    IHAL &m_hal;
+
 public:
     /**
      * @param hal The Hardware Abstraction Layer.
      */
     SerialDisplay(IHAL &hal);
+
     /**
      * Update the display with the given values.
      *

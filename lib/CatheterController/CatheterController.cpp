@@ -7,6 +7,7 @@
  * CatheterController Implementation
  */
 
+
 CatheterController::CatheterController(IHAL &hal)
     : input1(hal, 14),
       output1(hal, 9),
@@ -15,6 +16,7 @@ CatheterController::CatheterController(IHAL &hal)
       channel1(input1, output1),
       channel2(input2, output2),
       display(hal) {}
+
 
 void CatheterController::update() {
     channel1.update();
