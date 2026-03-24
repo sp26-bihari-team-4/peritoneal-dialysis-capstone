@@ -7,18 +7,15 @@
  */
 
 
-CatheterController::CatheterController(IHAL &hal, int inputPin1, int outputPin1, int inputPin2, int outputPin2)
+CatheterController::CatheterController(IHAL &hal, int inputPin1, int outputPin1, int inputPin2, int outputPin2, IDisplay &display)
     : input1(hal, inputPin1),
       output1(hal, outputPin1),
       input2(hal, inputPin2),
       output2(hal, outputPin2),
       channel1(input1, output1),
       channel2(input2, output2),
-      display(hal) {}
+      display(display) {}
 
-void CatheterController::initialize() {
-    display.initialize();
-}
 
 
 void CatheterController::update() {

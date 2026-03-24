@@ -6,11 +6,9 @@
 #define CATHER_CONTROLLER_H
 
 #include <Channel.h>
-#include <IDisplay.h>
 #include <IHAL.h>
 #include <PotentiometerInput.h>
 #include <PWMOutput.h>
-#include <SerialDisplay.h>
 
 /**
  * Catheter Controller
@@ -27,13 +25,14 @@ private:
     PWMOutput output2;
     Channel channel1;
     Channel channel2;
-    SerialDisplay display;
+    IDisplay &display;
 
 public:
     /**
      * @param hal The Hardware Abstraction Layer.
      */
-    CatheterController(IHAL &hal);
+    CatheterController(IHAL &hal, int inputPin1, int outputPin1, int inputPin2, int outputPin2, IDisplay &display);
+
     /**
      * Update both channels
      */
