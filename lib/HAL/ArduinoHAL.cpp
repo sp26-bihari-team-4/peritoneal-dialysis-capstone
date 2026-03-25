@@ -9,12 +9,12 @@ ArduinoHAL::ArduinoHAL(int serialBaud) : m_serialBaud{serialBaud} {}
 // Analog I/O
 
 AnalogValue ArduinoHAL::analogRead(int pin) {
-	return analogRead(pin);
+	return ::analogRead(pin);
 }
 
 void ArduinoHAL::analogWrite(int pin, AnalogValue value) {
 	assert(value <= MAX_ANALOG_WRITE_QUANT);
-	analogWrite(pin, value);
+	::analogWrite(pin, value);
 }
 
 AnalogValue ArduinoHAL::getMaxAnalogReadQuant() const {
@@ -28,12 +28,12 @@ AnalogValue ArduinoHAL::getMaxAnalogWriteQuant() const {
 // Digital I/O
 
 DigitalValue ArduinoHAL::digitalRead(int pin) {
-	return digitalRead(pin);
+	return ::digitalRead(pin);
 }
 
 void ArduinoHAL::digitalWrite(int pin, DigitalValue value) {
 	assert(value == LOW || value == HIGH);
-	digitalWrite(pin, value);
+	::digitalWrite(pin, value);
 }
 
 // Serial
