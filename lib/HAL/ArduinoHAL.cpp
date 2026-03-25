@@ -28,7 +28,7 @@ AnalogValue ArduinoHAL::getMaxAnalogWriteQuant() const {
 // Digital I/O
 
 DigitalValue ArduinoHAL::digitalRead(int pin) {
-	return ::digitalRead(pin);
+	return static_cast<DigitalValue>(::digitalRead(pin));
 }
 
 void ArduinoHAL::digitalWrite(int pin, DigitalValue value) {
