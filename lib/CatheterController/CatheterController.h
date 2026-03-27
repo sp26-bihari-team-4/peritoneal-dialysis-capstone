@@ -9,6 +9,7 @@
 #include <IHAL.h>
 #include <PotentiometerInput.h>
 #include <PWMOutput.h>
+#include <IDisplay.h>
 
 /**
  * Catheter Controller
