@@ -5,7 +5,6 @@
 void TFTDisplay::initialize() {
 	initializeDriver();
 	determineLayout();
-	clearScreen(CLEAR_COLOR);
 }
 
 void TFTDisplay::determineLayout() {
@@ -19,6 +18,8 @@ void TFTDisplay::determineLayout() {
 }
 
 void TFTDisplay::update(float channel1Power, float channel2Power) {
+	clearScreen(CLEAR_COLOR);
+
 	snprintf(
 		m_text_staging, sizeof(m_text_staging), "Wire 1 Power Level: %d%%",
 		static_cast<int>(round(channel1Power * 100.f))

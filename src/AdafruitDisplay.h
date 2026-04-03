@@ -24,8 +24,11 @@ protected:
 
 private:
 	// The display accepts 16-bit colors in the 565 format (5 bits red, 6 bits
-	// blue, 5 bits green).
+	// green, 5 bits blue).
 	using Color565 = uint16_t;
+
+	// <https://learn.adafruit.com/adafruit-mini-tft-0-dot-96-inch-180x60-breakout/wiring-test>
+	static constexpr uint8_t DISPLAY_REVISION{INITR_MINI160x80_PLUGIN};
 
 	// According to
 	// <https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html#a39eb4a8a2c9fa4ab7d58ceffd19535d5>,

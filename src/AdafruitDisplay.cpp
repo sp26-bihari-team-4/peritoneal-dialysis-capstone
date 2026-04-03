@@ -1,12 +1,7 @@
 #include <AdafruitDisplay.h>
-#include <Adafruit_ST7735.h>
 #include <stdint.h>
 
-// <https://learn.adafruit.com/adafruit-mini-tft-0-dot-96-inch-180x60-breakout/wiring-test>
-static constexpr uint8_t DISPLAY_REVISION{INITR_MINI160x80_PLUGIN};
-
 // Instantiate Adafruit driver using hardware SPI.
-
 AdafruitDisplay::AdafruitDisplay(int csPin, int dcPin)
 		// TODO(will): should we assert that 'csPin' and 'dcPin' are in range for
 		//             'int8_t'?
