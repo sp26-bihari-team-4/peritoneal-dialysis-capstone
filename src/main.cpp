@@ -1,7 +1,7 @@
+#include <AdafruitDisplay.h>
 #include <Arduino.h>
 #include <ArduinoHAL.h>
 #include <CatheterController.h>
-#include <AdafruitDisplay.h>
 
 enum {
 	INPUT_PIN_1 = A0,
