@@ -6,42 +6,28 @@
 #define TFT_DISPLAY_H
 
 #include <IDisplay.h>
+#include <TFT.h>
+#include <TFTDriver.h>
 
 class TFTDisplay : public IDisplay {
 public:
+	explicit TFTDisplay(TFTDriver &driver);
+
 	void initialize() final;
 	void update(float channel1Power, float channel2Power) final;
 
-protected:
-	enum class Color {
-		Black,
-		White,
-	};
-
-	struct Point {
-		unsigned x;
-		unsigned y;
-	};
-
-	virtual void initializeDriver() = 0;
-	[[nodiscard]] virtual unsigned getWidth() const = 0;
-	[[nodiscard]] virtual unsigned getHeight() const = 0;
-	[[nodiscard]] virtual unsigned getTextWidth() const = 0;
-	[[nodiscard]] virtual unsigned getTextHeight() const = 0;
-	virtual void clearScreen(Color color) = 0;
-	virtual void drawText(Point topLeft, Color color, const char *string) = 0;
-
 private:
-	static constexpr Color CLEAR_COLOR{Color::Black};
-	static constexpr Color TEXT_COLOR{Color::White};
+	static constexpr TFTColor CLEAR_COLOR{TFTColor::Black};
+	static constexpr TFTColor TEXT_COLOR{TFTColor::White};
 
 	struct Layout {
-		Point wire1Text;
-		Point wire2Text;
+		TFTPoint wire1Text;
+		TFTPoint wire2Text;
 	};
 
 	void determineLayout();
 
+	TFTDriver &m_driver;
 	char m_text_staging[128];
 	Layout m_layout;
 };
