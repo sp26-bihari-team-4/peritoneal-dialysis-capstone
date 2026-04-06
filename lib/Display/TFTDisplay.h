@@ -9,22 +9,43 @@
 #include <TFT.h>
 #include <TFTDriver.h>
 
+/**
+ * An @ref IDisplay implementation for TFT color displays.
+ */
 class TFTDisplay : public IDisplay {
 public:
+	/**
+	 * Creates a TFT display for a specific TFT driver.
+	 *
+	 * @param driver The underlying driver.
+	 */
 	explicit TFTDisplay(TFTDriver &driver);
 
-	void initialize() final;
-	void update(float channel1Power, float channel2Power) final;
+	void initialize() override;
+	void update(float channel1Power, float channel2Power) override;
 
 private:
+	/**
+	 * The color used for clearing the screen.
+	 */
 	static constexpr TFTColor CLEAR_COLOR{TFTColor::Black};
+
+	/**
+	 * The default color for drawing text.
+	 */
 	static constexpr TFTColor TEXT_COLOR{TFTColor::White};
 
+	/**
+	 * The positions of UI elements.
+	 */
 	struct Layout {
-		TFTPoint wire1Text;
-		TFTPoint wire2Text;
+		TFTPoint wire1Text; /**< The top-left of the first line of text. */
+		TFTPoint wire2Text; /**< The top-left of the second line of text. */
 	};
 
+	/**
+	 * Pre-computes the positions of UI elements.
+	 */
 	void determineLayout();
 
 	TFTDriver &m_driver;
