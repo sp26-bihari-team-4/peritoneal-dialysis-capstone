@@ -1,26 +1,25 @@
 /**
- * @file AdafruitDisplay.h
+ * @file AdafruitTFTDriver.h
  */
 
-#ifndef ADAFRUIT_DISPLAY_H
-#define ADAFRUIT_DISPLAY_H
+#ifndef ADAFRUIT_TFT_DRIVER_H
+#define ADAFRUIT_TFT_DRIVER_H
 
 #include <Adafruit_ST7735.h>
-#include <TFTDisplay.h>
+#include <TFTDriver.h>
 #include <stdint.h>
 
-class AdafruitDisplay : public TFTDisplay {
+class AdafruitTFTDriver : public TFTDriver {
 public:
-	AdafruitDisplay(int csPin, int dcPin);
+	AdafruitTFTDriver(int csPin, int dcPin);
 
-protected:
-	void initializeDriver() override;
-	[[nodiscard]] unsigned getWidth() const override;
-	[[nodiscard]] unsigned getHeight() const override;
+	void initialize() override;
+	[[nodiscard]] unsigned getScreenWidth() const override;
+	[[nodiscard]] unsigned getScreenHeight() const override;
 	[[nodiscard]] unsigned getTextWidth() const override;
 	[[nodiscard]] unsigned getTextHeight() const override;
-	void clearScreen(Color color) override;
-	void drawText(Point topLeft, Color color, const char *string) override;
+	void clearScreen(TFTColor color) override;
+	void drawText(TFTPoint topLeft, TFTColor color, const char *string) override;
 
 private:
 	// The display accepts 16-bit colors in the 565 format (5 bits red, 6 bits
@@ -40,9 +39,9 @@ private:
 	 * Converts an abstract color to the representation used by the Adafruit
 	 * ST7735 library.
 	 */
-	static Color565 encodeColor(Color color);
+	static Color565 encodeColor(TFTColor color);
 
-	Adafruit_ST7735 m_driver;
+	Adafruit_ST7735 m_gfx;
 };
 
-#endif // ADAFRUIT_DISPLAY_H
+#endif // ADAFRUIT_TFT_DRIVER_H

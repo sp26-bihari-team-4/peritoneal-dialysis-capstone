@@ -2,8 +2,10 @@
 #include <math.h>
 #include <stdio.h>
 
+TFTDisplay::TFTDisplay(TFTDriver &driver) : m_driver{driver} {}
+
 void TFTDisplay::initialize() {
-	initializeDriver();
+	m_driver.initialize();
 	determineLayout();
 }
 
@@ -14,21 +16,21 @@ void TFTDisplay::determineLayout() {
 
 	// Wire 2 text will be on the second line
 	m_layout.wire2Text.x = 0;
-	m_layout.wire2Text.y = getTextHeight();
+	m_layout.wire2Text.y = m_driver.getTextHeight();
 }
 
 void TFTDisplay::update(float channel1Power, float channel2Power) {
-	clearScreen(CLEAR_COLOR);
+	m_driver.clearScreen(CLEAR_COLOR);
 
 	snprintf(
 		m_text_staging, sizeof(m_text_staging), "Wire 1 Power Level: %d%%",
 		static_cast<int>(round(channel1Power * 100.f))
 	);
-	drawText(m_layout.wire1Text, TEXT_COLOR, m_text_staging);
+	m_driver.drawText(m_layout.wire1Text, TEXT_COLOR, m_text_staging);
 
 	snprintf(
 		m_text_staging, sizeof(m_text_staging), "Wire 2 Power Level: %d%%",
 		static_cast<int>(round(channel2Power * 100.f))
 	);
-	drawText(m_layout.wire2Text, TEXT_COLOR, m_text_staging);
+	m_driver.drawText(m_layout.wire2Text, TEXT_COLOR, m_text_staging);
 }
