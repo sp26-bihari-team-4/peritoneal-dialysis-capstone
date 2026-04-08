@@ -6,42 +6,49 @@
 #define TFT_DISPLAY_H
 
 #include <IDisplay.h>
+#include <TFT.h>
+#include <TFTDriver.h>
 
+/**
+ * An @ref IDisplay implementation for TFT color displays.
+ */
 class TFTDisplay : public IDisplay {
 public:
-	void initialize() final;
-	void update(float channel1Power, float channel2Power) final;
+	/**
+	 * Creates a TFT display for a specific TFT driver.
+	 *
+	 * @param driver The underlying driver.
+	 */
+	explicit TFTDisplay(TFTDriver &driver);
 
-protected:
-	enum class Color {
-		Black,
-		White,
-	};
-
-	struct Point {
-		unsigned x;
-		unsigned y;
-	};
-
-	virtual void initializeDriver() = 0;
-	[[nodiscard]] virtual unsigned getWidth() const = 0;
-	[[nodiscard]] virtual unsigned getHeight() const = 0;
-	[[nodiscard]] virtual unsigned getTextWidth() const = 0;
-	[[nodiscard]] virtual unsigned getTextHeight() const = 0;
-	virtual void clearScreen(Color color) = 0;
-	virtual void drawText(Point topLeft, Color color, const char *string) = 0;
+	void initialize() override;
+	void update(float channel1Power, float channel2Power) override;
 
 private:
-	static constexpr Color CLEAR_COLOR{Color::Black};
-	static constexpr Color TEXT_COLOR{Color::White};
+	/**
+	 * The color used for clearing the screen.
+	 */
+	static constexpr TFTColor CLEAR_COLOR{TFTColor::Black};
 
+	/**
+	 * The default color for drawing text.
+	 */
+	static constexpr TFTColor TEXT_COLOR{TFTColor::White};
+
+	/**
+	 * The positions of UI elements.
+	 */
 	struct Layout {
-		Point wire1Text;
-		Point wire2Text;
+		TFTPoint wire1Text; /**< The top-left of the first line of text. */
+		TFTPoint wire2Text; /**< The top-left of the second line of text. */
 	};
 
+	/**
+	 * Pre-computes the positions of UI elements.
+	 */
 	void determineLayout();
 
+	TFTDriver &m_driver;
 	char m_text_staging[128];
 	Layout m_layout;
 };
