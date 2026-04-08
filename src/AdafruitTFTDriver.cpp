@@ -3,8 +3,6 @@
 
 // Instantiate Adafruit driver using hardware SPI.
 AdafruitTFTDriver::AdafruitTFTDriver(int csPin, int dcPin)
-		// TODO(will): should we assert that 'csPin' and 'dcPin' are in range for
-		//             'int8_t'?
 		: m_gfx{
 				static_cast<int8_t>(csPin), static_cast<int8_t>(dcPin), /*rst=*/-1
 			} {}
