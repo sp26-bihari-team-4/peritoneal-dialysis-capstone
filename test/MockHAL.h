@@ -1,3 +1,6 @@
+#ifndef MOCK_HAL_H
+#define MOCK_HAL_H
+
 #include <IHAL.h>
 #include <gmock/gmock.h>
 
@@ -16,3 +19,5 @@ public:
 	MOCK_METHOD(void, delayMs, (unsigned long durationMs), (override));
 	MOCK_METHOD(unsigned long, getTimeMs, (), (override));
 };
+
+#endif // MOCK_HAL_H
