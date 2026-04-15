@@ -29,6 +29,9 @@ private:
 	// <https://learn.adafruit.com/adafruit-mini-tft-0-dot-96-inch-180x60-breakout/wiring-test>
 	static constexpr uint8_t DISPLAY_REVISION{INITR_MINI160x80_PLUGIN};
 
+	// The magnification level for text.
+	static constexpr unsigned TEXT_SCALE{1};
+
 	// According to
 	// <https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html#a39eb4a8a2c9fa4ab7d58ceffd19535d5>,
 	// the default text size is 6x8.
