@@ -27,6 +27,10 @@ enum class TFTColor {
 struct TFTPoint {
 	unsigned x;
 	unsigned y;
+
+	bool operator==(const TFTPoint &other) const {
+		return (x == other.x) && (y == other.y);
+	}
 };
 
 #endif // TFT_H
