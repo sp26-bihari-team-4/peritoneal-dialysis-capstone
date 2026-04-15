@@ -9,6 +9,7 @@ AdafruitTFTDriver::AdafruitTFTDriver(int csPin, int dcPin)
 
 void AdafruitTFTDriver::initialize() {
 	m_gfx.initR(DISPLAY_REVISION);
+	m_gfx.setTextSize(TEXT_SCALE);
 }
 
 unsigned AdafruitTFTDriver::getScreenWidth() const {
@@ -20,11 +21,11 @@ unsigned AdafruitTFTDriver::getScreenHeight() const {
 }
 
 unsigned AdafruitTFTDriver::getTextWidth() const {
-	return DEFAULT_TEXT_WIDTH;
+	return TEXT_SCALE * DEFAULT_TEXT_WIDTH;
 }
 
 unsigned AdafruitTFTDriver::getTextHeight() const {
-	return DEFAULT_TEXT_HEIGHT;
+	return TEXT_SCALE * DEFAULT_TEXT_HEIGHT;
 }
 
 void AdafruitTFTDriver::clearScreen(TFTColor color) {
