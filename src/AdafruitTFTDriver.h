@@ -30,7 +30,12 @@ private:
 	static constexpr uint8_t DISPLAY_REVISION{INITR_MINI160x80_PLUGIN};
 
 	// The magnification level for text.
-	static constexpr unsigned TEXT_SCALE{1};
+	static constexpr unsigned TEXT_SCALE{2};
+
+	// The value used for the Adafruit GFX 'setRotation' call. By default, the
+	// display uses a portrait oritentation. A value of 1 corresponds to a
+	// landscape orientation.
+	static constexpr unsigned SCREEN_ORIENTATION{1};
 
 	// According to
 	// <https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html#a39eb4a8a2c9fa4ab7d58ceffd19535d5>,

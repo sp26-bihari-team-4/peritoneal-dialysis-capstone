@@ -10,6 +10,7 @@ AdafruitTFTDriver::AdafruitTFTDriver(int csPin, int dcPin)
 void AdafruitTFTDriver::initialize() {
 	m_gfx.initR(DISPLAY_REVISION);
 	m_gfx.setTextSize(TEXT_SCALE);
+	m_gfx.setRotation(SCREEN_ORIENTATION);
 }
 
 unsigned AdafruitTFTDriver::getScreenWidth() const {
@@ -38,7 +39,7 @@ void AdafruitTFTDriver::drawText(
 	m_gfx.setCursor(
 		static_cast<int16_t>(topLeft.x), static_cast<int16_t>(topLeft.y)
 	);
-	m_gfx.setTextColor(encodeColor(color));
+	m_gfx.setTextColor(encodeColor(color), encodeColor(TFTColor::Black));
 	m_gfx.print(string);
 }
 
