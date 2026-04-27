@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - deploy-docs-to-github-pages
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
