@@ -94,4 +94,8 @@ PlatformIO manages an installation of [clang-tidy](https://releases.llvm.org/21.
 
 #### Doxygen
 
-Lastly, our documentation is generated with [Doxygen](https://doxygen.nl/index.html). If you want to do that locally, install version 1.16.1 from their site or your preferred package manager.
+Our documentation is generated with [Doxygen](https://doxygen.nl/index.html). If you want to do that locally, install version 1.16.1 from their site or your preferred package manager.
+
+#### KiCad
+
+One last piece of software you might want to install is [KiCad](https://www.kicad.org/) (version 9), which was used to make our circuit schematic. With it installed, you should be able to open the KiCad project file `hardware/capstone.kicad_pro` to see and modify the schematic.
