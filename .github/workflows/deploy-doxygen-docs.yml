@@ -34,8 +34,8 @@ jobs:
           sudo apt install -y ./ubuntu_24.04_graphviz-14.1.5-cmake.deb
           rm ubuntu_24.04_graphviz-14.1.5-cmake.deb
       - run: doxygen
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v7
         with:
           path: ./doc/html
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
