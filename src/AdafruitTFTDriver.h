@@ -19,7 +19,9 @@ public:
 	[[nodiscard]] unsigned getTextWidth() const override;
 	[[nodiscard]] unsigned getTextHeight() const override;
 	void clearScreen(TFTColor color) override;
-	void drawText(TFTPoint topLeft, TFTColor color, const char *string) override;
+	void drawText(
+		TFTPoint topLeft, TFTColor textColor, TFTColor bgColor, const char *string
+	) override;
 
 private:
 	// The display accepts 16-bit colors in the 565 format (5 bits red, 6 bits
