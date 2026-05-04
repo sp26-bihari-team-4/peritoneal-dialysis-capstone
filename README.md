@@ -1,5 +1,7 @@
 ## Circuit Design
 
+![The circuit schematic, depicting the Arduino, potentiometers, MOSFETs, and LCD module.](./resource/circuit-schematic.png)
+
 The system is controlled by an [Arduino UNO R3][arduino-uno-r3] microcontroller, which can be programmed and powered via the builtin USB port.
 
 Two 10K ohm rotary potentiometers control the power to each nitinol wire. The resistive track terminals are tied to +5V and (Arduino) GND, and the wiper terminals are tied to analog input pins A0 and A2 of the Arduino. Wiring the potentiometers in this way allows the voltage divider outputs of the potentiometers to be sampled by the Arduino.
