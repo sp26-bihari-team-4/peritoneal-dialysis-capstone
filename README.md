@@ -6,7 +6,7 @@ The system is controlled by an [Arduino UNO R3][arduino-uno-r3] microcontroller,
 
 Two 10K ohm rotary potentiometers control the power to each nitinol wire. The resistive track terminals are tied to +5V and (Arduino) GND, and the wiper terminals are tied to analog input pins A0 and A2 of the Arduino. Wiring the potentiometers in this way allows the voltage divider outputs of the potentiometers to be sampled by the Arduino.
 
-The Arduino then replicates these input voltages on two digital output pins using pulse width modulation (PWM). Each digital output is controlled by one analog input; the pair of pins comprise a "channel" (which in turn corresponds to one nitinol wire). Channel 1 consists of input A0 and output D10, and channel 2 consists of input A2 and output D11.
+The Arduino then replicates these input voltages on two digital output pins using pulse width modulation (PWM). Each digital output is controlled by one analog input; the pair of pins comprise a "channel" (which in turn corresponds to one nitinol wire). Channel 1 consists of input A0 and output D5, and channel 2 consists of input A2 and output D6.
 
 These PWM output pins are used to drive two logic-level MOSFETs ([Infineon IRLZ34N][irlz34n]) that deliver current to the nitinol wires. Both MOSFETs have their sources tied to (Arduino) GND, and each PWM output is tied to one MOSFET gate terminal. This configuration enables the MOSFETs to switch between cut-off and saturation by modulating the PWM outputs. The drain terminals are then tied to the actual nitinol wires (the loads).
 
