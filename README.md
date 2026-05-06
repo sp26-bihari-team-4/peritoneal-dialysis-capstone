@@ -99,3 +99,19 @@ Our documentation is generated with [Doxygen](https://doxygen.nl/index.html). If
 #### KiCad
 
 One last piece of software you might want to install is [KiCad](https://www.kicad.org/) (version 9), which was used to make our circuit schematic. With it installed, you should be able to open the KiCad project file `hardware/capstone.kicad_pro` to see and modify the schematic.
+
+## Software Architecture
+
+The following diagram shows a (slightly editorialized) view of the relationships between all the classes and interfaces we created:
+
+![A PlantUML class diagram showing inheritance and ownership between the classes in the codebase](resource/software-architecture.png)
+
+`CatheterController` is our main encapsulating class. It's instantiated by `src/main.cpp` and its `update` method is continually called. `CatheterController` owns a reference to an `IDisplay`, which is an interface defining the functionality of our display classes. `CatheterController` also owns two `Channel` objects, which each represent a pairing of a potentiometer input and a PWM output.
+
+Actually, each `Channel` owns references to an `IInput` and `IOutput`, of which `PotentiometerInput` and `PWMOutput` are the only implementing classes. Without context, this may seem unnecessary, but having interfaces for these classes is useful when it comes to unit testing the `Channel` class, since it allows us to easily mock the input and output objects that `Channel` uses. See the [section below on testing](#testing).
+
+You'll notice that both `PotentiometerInput` and `PWMOutput` own references to an `IHAL` object. We use HAL as an abbreviation for hardware abstraction layer. Like some of our other interfaces, this one only has one implementing class, `ArduinoHAL`. While the other ones were set up like that for testing/mocking purposes, this setup is to facilitate portability. `IHAL` defines all the (non-display) hardware functionality that the rest of the code requires. `ArduinoHAL` implements this functionality using the Arduino framework. In fact, our HAL interface is nearly one-to-one with the Arduino framework, so practically every `ArduinoHAL` method simply calls a corresponding Arduino function. Crucially however, `IHAL` can be implemented for many other microcontrollers or full-on computers (i.e., ESP8266, Raspberry Pi, Teensy, etc.). Setting it up this way allows our software to be ported to new hardware with minimal modifications. Only `IHAL`, `TFTDriver`, and `src/main.cpp` need to be reimplemented to move to a new microcontroller and display. You'll notice that our implementations for these live in the `src` directory, since they're hardware specific; the rest of the code is hardware-agnostic.
+
+Our software's portability is also enhanced by PlatformIO, which is an embedded programming tool that makes it easy to target multiple boards/platforms. In `platformio.ini`, the `uno` environment targets our Arduino Uno and specifies which third-party libraries to compile with. You can also see the `native` environment, which is used for running our unit tests locally. To target a new microcontroller supported by PlatformIO ([there are many](https://docs.platformio.org/en/latest/boards/index.html)), a new environment would need to be added, specifying the platform, board, and framework.
+
+### Testing
