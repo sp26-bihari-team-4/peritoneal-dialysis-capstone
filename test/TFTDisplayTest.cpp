@@ -14,7 +14,9 @@ public:
 	MOCK_METHOD(unsigned, getTextHeight, (), (override, const));
 	MOCK_METHOD(void, clearScreen, (TFTColor color), (override));
 	MOCK_METHOD(
-		void, drawText, (TFTPoint topLeft, TFTColor color, const char *string),
+		void, drawText,
+		(TFTPoint topLeft, TFTColor textColor, TFTColor bgColor,
+		 const char *string),
 		(override)
 	);
 };
@@ -29,6 +31,7 @@ protected:
 
 	TFTDisplayTest() {
 		EXPECT_CALL(driver, initialize());
+		EXPECT_CALL(driver, clearScreen(TFTColor::Black));
 		EXPECT_CALL(driver, getTextHeight()).WillOnce(Return(TEXT_HEIGHT));
 		// Call initialize before each test so display can store the text height
 		display.initialize();
@@ -36,48 +39,52 @@ protected:
 };
 
 TEST_F(TFTDisplayTest, DisplaysZeros) {
-	EXPECT_CALL(driver, clearScreen(TFTColor::Black));
 	EXPECT_CALL(
-		driver, drawText(line1, TFTColor::White, StrEq("Wire 1 Power Level: 0%"))
+		driver,
+		drawText(line1, TFTColor::White, TFTColor::Black, StrEq("Wire 1: 0%  "))
 	);
 	EXPECT_CALL(
-		driver, drawText(line2, TFTColor::White, StrEq("Wire 2 Power Level: 0%"))
+		driver,
+		drawText(line2, TFTColor::White, TFTColor::Black, StrEq("Wire 2: 0%  "))
 	);
 
 	display.update(0, 0);
 }
 
 TEST_F(TFTDisplayTest, DisplaysHundreds) {
-	EXPECT_CALL(driver, clearScreen(TFTColor::Black));
 	EXPECT_CALL(
-		driver, drawText(line1, TFTColor::White, StrEq("Wire 1 Power Level: 100%"))
+		driver,
+		drawText(line1, TFTColor::White, TFTColor::Black, StrEq("Wire 1: 100%  "))
 	);
 	EXPECT_CALL(
-		driver, drawText(line2, TFTColor::White, StrEq("Wire 2 Power Level: 100%"))
+		driver,
+		drawText(line2, TFTColor::White, TFTColor::Black, StrEq("Wire 2: 100%  "))
 	);
 
 	display.update(1, 1);
 }
 
 TEST_F(TFTDisplayTest, DisplaysMixedValues) {
-	EXPECT_CALL(driver, clearScreen(TFTColor::Black));
 	EXPECT_CALL(
-		driver, drawText(line1, TFTColor::White, StrEq("Wire 1 Power Level: 25%"))
+		driver,
+		drawText(line1, TFTColor::White, TFTColor::Black, StrEq("Wire 1: 25%  "))
 	);
 	EXPECT_CALL(
-		driver, drawText(line2, TFTColor::White, StrEq("Wire 2 Power Level: 75%"))
+		driver,
+		drawText(line2, TFTColor::White, TFTColor::Black, StrEq("Wire 2: 75%  "))
 	);
 
 	display.update(0.25, 0.75);
 }
 
 TEST_F(TFTDisplayTest, RoundsToTheNearestPercent) {
-	EXPECT_CALL(driver, clearScreen(TFTColor::Black));
 	EXPECT_CALL(
-		driver, drawText(line1, TFTColor::White, StrEq("Wire 1 Power Level: 44%"))
+		driver,
+		drawText(line1, TFTColor::White, TFTColor::Black, StrEq("Wire 1: 44%  "))
 	);
 	EXPECT_CALL(
-		driver, drawText(line2, TFTColor::White, StrEq("Wire 2 Power Level: 56%"))
+		driver,
+		drawText(line2, TFTColor::White, TFTColor::Black, StrEq("Wire 2: 56%  "))
 	);
 
 	display.update(0.4444, 0.5555);
