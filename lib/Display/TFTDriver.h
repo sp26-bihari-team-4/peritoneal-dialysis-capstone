@@ -54,11 +54,13 @@ public:
 	 * next line.
 	 *
 	 * @param topLeft The top-left position of the first character.
-	 * @param color The text color.
+	 * @param textColor The text color.
+	 * @param bgColor The background color.
 	 * @param string The NUL-terminated ASCII string to draw.
 	 */
-	virtual void
-	drawText(TFTPoint topLeft, TFTColor color, const char *string) = 0;
+	virtual void drawText(
+		TFTPoint topLeft, TFTColor textColor, TFTColor bgColor, const char *string
+	) = 0;
 };
 
 #endif // TFT_DRIVER_H

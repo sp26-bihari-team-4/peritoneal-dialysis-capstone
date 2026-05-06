@@ -34,11 +34,17 @@ void TFTDisplay::update(float channel1Power, float channel2Power) {
 		m_text_staging, sizeof(m_text_staging), "Wire 1: %d%%  ",
 		static_cast<int>(round(channel1Power * 100.f))
 	);
-	m_driver.drawText(m_layout.wire1Text, TEXT_COLOR, m_text_staging);
+	m_driver.drawText(
+		m_layout.wire1Text, /*textColor=*/TEXT_COLOR, /*bgColor=*/CLEAR_COLOR,
+		m_text_staging
+	);
 
 	snprintf(
 		m_text_staging, sizeof(m_text_staging), "Wire 2: %d%%  ",
 		static_cast<int>(round(channel2Power * 100.f))
 	);
-	m_driver.drawText(m_layout.wire2Text, TEXT_COLOR, m_text_staging);
+	m_driver.drawText(
+		m_layout.wire2Text, /*textColor=*/TEXT_COLOR, /*bgColor=*/CLEAR_COLOR,
+		m_text_staging
+	);
 }

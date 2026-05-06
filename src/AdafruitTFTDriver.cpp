@@ -34,12 +34,12 @@ void AdafruitTFTDriver::clearScreen(TFTColor color) {
 }
 
 void AdafruitTFTDriver::drawText(
-	TFTPoint topLeft, TFTColor color, const char *string
+	TFTPoint topLeft, TFTColor textColor, TFTColor bgColor, const char *string
 ) {
 	m_gfx.setCursor(
 		static_cast<int16_t>(topLeft.x), static_cast<int16_t>(topLeft.y)
 	);
-	m_gfx.setTextColor(encodeColor(color), encodeColor(TFTColor::Black));
+	m_gfx.setTextColor(encodeColor(textColor), encodeColor(bgColor));
 	m_gfx.print(string);
 }
 
