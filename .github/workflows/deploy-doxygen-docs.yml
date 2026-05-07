@@ -29,10 +29,18 @@ jobs:
       - uses: ssciwr/doxygen-install@v2
         with:
           version: 1.16.1
-      - run: |
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
+          java-package: jre
+      - name: Install Graphviz
+        run: |
           wget https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/14.1.5/ubuntu_24.04_graphviz-14.1.5-cmake.deb
           sudo apt install -y ./ubuntu_24.04_graphviz-14.1.5-cmake.deb
           rm ubuntu_24.04_graphviz-14.1.5-cmake.deb
+      - name: Download PlantUML
+        run: wget https://github.com/plantuml/plantuml/releases/download/v1.2026.2/plantuml-1.2026.2.jar
       - name: Render circuit schematic
         uses: actions-for-kicad/kicad-actions@v2.1-k9.0.8
         with:
