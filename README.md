@@ -100,6 +100,92 @@ Our documentation is generated with [Doxygen](https://doxygen.nl/index.html). If
 
 One last piece of software you might want to install is [KiCad](https://www.kicad.org/) (version 9), which was used to make our circuit schematic. With it installed, you should be able to open the KiCad project file `hardware/capstone.kicad_pro` to see and modify the schematic.
 
+## Important Commands
+
+As mentioned in the setup, you can run the following command to compile the code for Arduino:
+
+```sh
+pio run -e uno
+```
+
+For convenience, we've added a `compile` target in our Makefile. So with Make installed, you can equivalently run:
+
+```sh
+make compile
+```
+
+To compile and flash the code to a connected Arduino:
+
+```sh
+pio run -e uno -t upload
+```
+
+Or equivalently:
+
+```sh
+make flash
+```
+
+Use one of the following two commands to display the serial console:
+
+```sh
+pio device monitor
+make serial-console
+```
+
+Use one of the following two commands to run our unit tests:
+
+```sh
+pio test -e native
+make run-tests
+```
+
+To run linting:
+
+```sh
+pio check -e uno --fail-on-defect high --fail-on-defect medium --fail-on-defect low
+```
+
+To check code formatting on all the source files:
+
+```sh
+clang-format --dry-run $(find src lib include test -regex ".*\.\(cpp\|h\)")
+```
+
+The previous two commands can be easily run with:
+
+```sh
+make lint
+```
+
+To automatically fix formatting issues identified by clang-format, run one of the following two commands. However, be warned that it may make unwanted formatting changes to your code.
+
+```sh
+clang-format -i $(find src lib include test -regex ".*\.\(cpp\|h\)")
+make format
+```
+
+To generate the Doxygen documentation site in `doc/html`, simply run:
+
+```sh
+doxygen
+```
+
+Lastly, if you'd like to remove the compiled PlatformIO builds, run:
+
+```sh
+pio run -e uno -t clean
+pio run -e native -t clean
+```
+
+Or equivalently:
+
+```sh
+make clean
+```
+
+The PlatformIO CLI has many other useful commands, which are all documented in [the CLI guide](https://docs.platformio.org/en/stable/core/userguide/index.html). Likewise, [clang-tidy](https://releases.llvm.org/21.1.2/tools/clang/tools/extra/docs/clang-tidy/index.html) and [clang-format](https://releases.llvm.org/21.1.2/tools/clang/docs/ClangFormat.html) have many interesting options. We have both of them configured using config files (`.clang-tidy` and `.clang-format`). The clang-format docs are also useful for seeing all the [style options](https://releases.llvm.org/21.1.2/tools/clang/docs/ClangFormatStyleOptions.html).
+
 ## Circuit Design
 
 ### Overview
