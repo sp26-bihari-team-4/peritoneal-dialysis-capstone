@@ -94,7 +94,7 @@ PlatformIO manages an installation of [clang-tidy](https://releases.llvm.org/21.
 
 #### Doxygen
 
-Our documentation is generated with [Doxygen](https://doxygen.nl/index.html). If you want to do that locally, install version 1.16.1 from their site or your preferred package manager.
+Our documentation is generated with [Doxygen](https://doxygen.nl/index.html). If you want to do that locally, install version 1.16.1 from their site or your preferred package manager. To render many of the graphs/diagrams in the docs, Doxygen requires [`dot`](https://graphviz.org/docs/layouts/dot/) to be available. You can get this utility as part of [Graphviz 14.1.5](https://graphviz.org/download/). Additionally, to render our [software architecture diagram](software-architecture.md), Doxygen needs to be able to run [PlantUML](https://plantuml.com/starting). You can download `plantuml-1.2026.2.jar` from their [GitHub release](https://github.com/plantuml/plantuml/releases/tag/v1.2026.2) and save it to the project root directory. To be able to run the JAR file, you'll need a Java Runtime Environment installed. We recommend installing [an Eclipse Temurin OpenJDK 25 build](https://adoptium.net/installation).
 
 #### KiCad
 
