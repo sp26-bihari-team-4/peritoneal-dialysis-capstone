@@ -1,3 +1,12 @@
+compile:
+	pio run -e uno
+
+flash:
+	pio run -e uno -t upload
+
+serial-console:
+	pio device monitor
+
 run-tests:
 	pio test -e native
 
