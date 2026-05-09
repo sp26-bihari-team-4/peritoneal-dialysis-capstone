@@ -6,8 +6,9 @@
 #define IDISPLAY_H
 
 /**
- * Interface for displaying important values related to the system. Currently it
- * supports displaying the power level on each channel output.
+ * An interface for displaying important values related to the system
+ *
+ * Currently, it supports displaying the duty cycle on each channel output.
  */
 class IDisplay {
 public:
@@ -21,8 +22,9 @@ public:
 
 	/**
 	 * Update the display with all relevant values.
-	 * @param channel1Power The output value for channel 1 (between 0 and 1)
-	 * @param channel2Power The output value for channel 2 (between 0 and 1)
+	 *
+	 * @param channel1Power The output duty cycle for channel 1 (between 0 and 1)
+	 * @param channel2Power The output duty cycle for channel 2 (between 0 and 1)
 	 */
 	virtual void update(float channel1Power, float channel2Power) = 0;
 };

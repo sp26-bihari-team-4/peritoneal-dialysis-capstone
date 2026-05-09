@@ -20,11 +20,11 @@ enum PinMode {
 };
 
 /**
- * Hardware Abstraction Layer Interface
+ * A hardware abstraction layer interface
  *
- * This interface defines all hardware operations needed by the application.
- * Different platforms (Arduino, Raspberry Pi, etc.) implement this interface
- * to provide platform-specific functionality.
+ * This interface defines all the microcontroller operations needed by the
+ * application. It can be implemented for different platforms (e.g., Arduino,
+ * Raspberry Pi, ESP8266 etc.) to port the application to them.
  */
 class IHAL {
 public:
@@ -38,8 +38,8 @@ public:
 	 * The pin must be valid for analog reading.
 	 *
 	 * @param pin The pin number.
-	 * @return The quantized value in the range <tt>[0, N]</tt> where \c N is
-	 *         the maximum value indicated by \ref getMaxAnalogReadQuant.
+	 * @return The quantized value in the range <tt>[0, N]</tt> where @c N is the
+	 * maximum value indicated by @ref getMaxAnalogReadQuant.
 	 */
 	virtual AnalogValue analogRead(int pin) = 0;
 
@@ -49,9 +49,9 @@ public:
 	 * The pin must be valid for analog writing.
 	 *
 	 * @param pin The pin number.
-	 * @param value The quantized value to write. Must be in the range
-	 *              <tt>[0, N]</tt> where \c N is the maximum value indicated by
-	 *              \ref getMaxAnalogWriteQuant.
+	 * @param value The quantized value to write. Must be in the range <tt>[0,
+	 * N]</tt> where @c N is the maximum value indicated by @ref
+	 * getMaxAnalogWriteQuant.
 	 */
 	virtual void analogWrite(int pin, AnalogValue value) = 0;
 

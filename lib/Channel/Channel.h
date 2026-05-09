@@ -9,7 +9,7 @@
 #include <IOutput.h>
 
 /**
- * Represents a control channel from one input to one output.
+ * A control channel from one input to one output
  */
 class Channel {
 private:
@@ -29,7 +29,7 @@ public:
 	void update();
 
 	/**
-	 * @return The current output value between zero and one.
+	 * Get the current output value duty cycle (between zero and one).
 	 */
 	float getOutputValue();
 };

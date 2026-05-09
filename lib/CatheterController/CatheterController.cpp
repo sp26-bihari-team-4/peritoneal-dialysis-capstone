@@ -2,9 +2,6 @@
 #include <PWMOutput.h>
 #include <PotentiometerInput.h>
 
-/**
- * CatheterController Implementation
- */
 CatheterController::CatheterController(
 	IHAL &hal, int inputPin1, int outputPin1, int inputPin2, int outputPin2,
 	IDisplay &display

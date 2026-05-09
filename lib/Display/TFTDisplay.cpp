@@ -26,9 +26,8 @@ void TFTDisplay::determineLayout() {
 
 void TFTDisplay::update(float channel1Power, float channel2Power) {
 	// NOTE: The extra two spaces at the end are for clearing a previous longer
-	//       message. The channel power is represented in 1 to 3 digits, so in
-	//       the worst case there are two leftover characters from the previous
-	//       update.
+	// message. The channel power is represented in 1 to 3 digits, so in the worst
+	// case there are two leftover characters from the previous update.
 
 	snprintf(
 		m_text_staging, sizeof(m_text_staging), "Wire 1: %d%%  ",

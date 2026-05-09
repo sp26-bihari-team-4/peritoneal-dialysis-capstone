@@ -10,7 +10,7 @@
 #include <TFTDriver.h>
 
 /**
- * An @ref IDisplay implementation for TFT color displays.
+ * An implementation of `IDisplay` for TFT color displays
  */
 class TFTDisplay : public IDisplay {
 public:
