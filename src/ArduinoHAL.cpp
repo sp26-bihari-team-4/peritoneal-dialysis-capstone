@@ -37,6 +37,8 @@ DigitalValue ArduinoHAL::digitalRead(int pin) {
 }
 
 void ArduinoHAL::digitalWrite(int pin, DigitalValue value) {
+	// NOTE: The enumeration constants DigitalLow and DigitalHigh are aligned
+	// with the Arduino macros LOW and HIGH.
 	assert(value == LOW || value == HIGH);
 	::digitalWrite(pin, value);
 }
