@@ -1,0 +1,55 @@
+on:
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy-doxygen-docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ssciwr/doxygen-install@v2
+        with:
+          version: 1.16.1
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 25
+          java-package: jre
+      - name: Install Graphviz
+        run: |
+          wget https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/14.1.5/ubuntu_24.04_graphviz-14.1.5-cmake.deb
+          sudo apt install -y ./ubuntu_24.04_graphviz-14.1.5-cmake.deb
+          rm ubuntu_24.04_graphviz-14.1.5-cmake.deb
+      - name: Download PlantUML
+        run: wget https://github.com/plantuml/plantuml/releases/download/v1.2026.2/plantuml-1.2026.2.jar
+      - name: Render circuit schematic
+        uses: actions-for-kicad/kicad-actions@v2.1-k9.0.8
+        with:
+          schematic_file_name: hardware/capstone.kicad_sch
+          schematic_output_svg: true
+          schematic_output_svg_folder_name: doc/html
+      - run: doxygen
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./doc/html
+      - uses: actions/deploy-pages@v5

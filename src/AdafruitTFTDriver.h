@@ -9,8 +9,18 @@
 #include <TFTDriver.h>
 #include <stdint.h>
 
+/**
+ * An implementation of `TFTDriver` for the Adafruit 0.96" 160x80 Color TFT
+ * Display
+ */
 class AdafruitTFTDriver : public TFTDriver {
 public:
+	/**
+	 * Instantiate the Adafruit driver using hardware SPI.
+	 *
+	 * @param csPin The SPI chip select pin
+	 * @param dcPin The SPI data/command pin
+	 */
 	AdafruitTFTDriver(int csPin, int dcPin);
 
 	void initialize() override;
@@ -34,7 +44,7 @@ private:
 	// The magnification level for text.
 	static constexpr unsigned TEXT_SCALE{2};
 
-	// The value used for the Adafruit GFX 'setRotation' call. By default, the
+	// The value used for the Adafruit GFX `setRotation` call. By default, the
 	// display uses a portrait oritentation. A value of 1 corresponds to a
 	// landscape orientation.
 	static constexpr unsigned SCREEN_ORIENTATION{1};

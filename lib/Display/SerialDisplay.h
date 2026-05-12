@@ -9,7 +9,8 @@
 #include <IHAL.h>
 
 /**
- * Implementation of `IDisplay` that uses the HAL to write to the serial output.
+ * An implementation of `IDisplay` that uses the HAL to write to the serial
+ * output
  */
 class SerialDisplay : public IDisplay {
 private:

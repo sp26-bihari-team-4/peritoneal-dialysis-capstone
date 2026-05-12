@@ -7,3 +7,4 @@
 .direnv
 doc
 shell.nix
+*.jar

@@ -9,17 +9,14 @@
 #include <IOutput.h>
 
 /**
- * PWM Output
- *
- * Controls a PWM output pin. Accepts normalized values (0.0-1.0) and
- * converts them to the appropriate PWM range (0-255 for Arduino).
+ * The implementation of `IOutput`
  */
 class PWMOutput : public IOutput {
 public:
 	/**
 	 * Configures a pin as a PWM output.
 	 *
-	 * @param hal The Hardware Abstraction Layer (HAL).
+	 * @param hal A reference to the hardware abstraction layer.
 	 * @param pin The pin number.
 	 */
 	PWMOutput(IHAL &hal, int pin);
