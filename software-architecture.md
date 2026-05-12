@@ -24,10 +24,13 @@ class PotentiometerInput
 class PWMOutput
 class CatheterController
 class Channel
-class TFTPoint
 
-' Nested class representation
-class "TFTDisplay::Layout" as Layout
+' Structs
+struct TFTPoint
+struct "TFTDisplay::Layout" as Layout
+
+' Enums
+enum TFTColor
 
 ' Inheritance/implementation
 IDisplay <|.. SerialDisplay
@@ -38,10 +41,11 @@ IInput <|.. PotentiometerInput
 IOutput <|.. PWMOutput
 
 ' Ownership (by value)
-CatheterController *-- "2" Channel : channel1, channel2
-TFTDisplay +-- Layout : Nested Class
+CatheterController *-- "2" Channel : channel1,\nchannel2
+TFTDisplay +-- Layout : Nested\nClass
 TFTDisplay *-- "1" Layout : layout
-Layout *-- "2" TFTPoint : wire1Text, wire2Text
+TFTDisplay *-- "2" TFTColor: CLEAR_COLOR,\nTEXT_COLOR
+Layout *-- "2" TFTPoint : wire1Text,\nwire2Text
 
 ' Ownership (by reference)
 CatheterController o-- "1" IDisplay : display
