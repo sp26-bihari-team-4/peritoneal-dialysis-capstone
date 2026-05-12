@@ -6,10 +6,9 @@
 #define IINPUT_H
 
 /**
- * Input Interface
+ * An analog input interface
  *
- * Has a getValue method that reads from an analog input and returns a
- * value between 0 and 1
+ * Mainly exists so that `PotentiometerInput` can be mocked in unit tests.
  */
 class IInput {
 public:
@@ -18,8 +17,8 @@ public:
 	/**
 	 * Samples this input.
 	 *
-	 * @return The floating-point value of this input, normalized to the range
-	 *         [0, 1].
+	 * @return The floating-point value of this input, normalized to
+	 * the range [0, 1].
 	 */
 	virtual float getValue() = 0;
 };

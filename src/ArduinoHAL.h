@@ -8,10 +8,10 @@
 #include <IHAL.h>
 
 /**
- * Arduino Hardware Abstraction Layer
+ * An implementation of `IHAL` for Arduino
  *
- * Implementation of the HAL for Arduino. This class provides Arduino-specific
- * implementations of all hardware operations defined in the IHAL interface.
+ * This class provides Arduino-specific implementations of all hardware
+ * operations defined in the `IHAL` interface.
  */
 class ArduinoHAL : public IHAL {
 public:

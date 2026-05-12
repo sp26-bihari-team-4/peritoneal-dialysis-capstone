@@ -6,25 +6,23 @@
 #define IOUTPUT_H
 
 /**
- * Output Interface
+ * An analog output interface
  *
- * Has a setValue method that reads from an analog input and returns a
- * value between 0 and 1
+ * Mainly exists so that `PWMOutput` can be mocked in unit tests.
  */
 class IOutput {
 public:
 	virtual ~IOutput() = default;
 
 	/**
-	 * Returns the last value set.
+	 * Returns the last value written to this output.
 	 */
 	virtual float getValue() = 0;
 
 	/**
 	 * Writes a value to this output.
 	 *
-	 * @param value The floating-point value to set. Must be in the range
-	 *              [0, 1].
+	 * @param value The floating-point value to set. Must be in the range [0, 1].
 	 */
 	virtual void setValue(float value) = 0;
 };

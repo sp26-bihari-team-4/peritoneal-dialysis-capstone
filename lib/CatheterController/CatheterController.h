@@ -12,10 +12,8 @@
 #include <PotentiometerInput.h>
 
 /**
- * Catheter Controller
- *
- * Owns the two channels and a display. Has an update method to update
- * those. This class is what main.cpp will interact with.
+ * The main encapsulating class containing our business logic. Driven from
+ * main.cpp using the `update` method.
  */
 class CatheterController {
 private:
@@ -29,7 +27,12 @@ private:
 
 public:
 	/**
-	 * @param hal The Hardware Abstraction Layer.
+	 * @param hal A reference to the hardware abstraction layer
+	 * @param inputPin1 The pin number of the input for channel 1
+	 * @param outputPin1 The pin number of the output for channel 1
+	 * @param inputPin2 The pin number of the input for channel 2
+	 * @param outputPin2 The pin number of the output for channel 2
+	 * @param display A reference to the display
 	 */
 	CatheterController(
 		IHAL &hal, int inputPin1, int outputPin1, int inputPin2, int outputPin2,
@@ -37,7 +40,7 @@ public:
 	);
 
 	/**
-	 * Update both channels
+	 * Update both channels and display the output duty cycles.
 	 */
 	void update();
 };

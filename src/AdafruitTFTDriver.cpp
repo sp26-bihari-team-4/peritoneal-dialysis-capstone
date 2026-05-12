@@ -1,7 +1,6 @@
 #include <AdafruitTFTDriver.h>
 #include <stdint.h>
 
-// Instantiate Adafruit driver using hardware SPI.
 AdafruitTFTDriver::AdafruitTFTDriver(int csPin, int dcPin)
 		: m_gfx{
 				static_cast<int8_t>(csPin), static_cast<int8_t>(dcPin), /*rst=*/-1
