@@ -41,13 +41,13 @@ jobs:
           rm ubuntu_24.04_graphviz-14.1.5-cmake.deb
       - name: Download PlantUML
         run: wget https://github.com/plantuml/plantuml/releases/download/v1.2026.2/plantuml-1.2026.2.jar
+      - run: doxygen
       - name: Render circuit schematic
         uses: actions-for-kicad/kicad-actions@v2.1-k9.0.8
         with:
           schematic_file_name: hardware/capstone.kicad_sch
           schematic_output_svg: true
           schematic_output_svg_folder_name: doc/html
-      - run: doxygen
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
